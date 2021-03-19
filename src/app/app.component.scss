@@ -1,0 +1,25 @@
+.main-container{
+	width: 100vw;
+	height: 100vh;
+	background: url("../assets/imgs/landing.png") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.upload-container{
+	width: 300px;
+}
+
+.form-select{
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.loading-container{
+	width: 100%;
+	text-align: center;
+}
