@@ -15,6 +15,9 @@ export class AppComponent {
     public videoData = undefined;
     public loading = false;
     public errorMsg = "";
+
+    public path_NewFile = "";
+    public readyToDownload = false;
  
 	constructor(private formBuilder: FormBuilder,
                 private http: HttpClient){
@@ -53,16 +56,47 @@ export class AppComponent {
 
       // we store the board withtout saving any brand or model
       this.transferVideo(options, this.videoData)
-      .then((response) => {
+      .then((path: string) => {
         this.loading = false;
-        console.log(response);
+        this.path_NewFile = path;
+        this.readyToDownload = true;
       })
       .catch((error) => {
         this.loading = false;
         this.errorMsg = "Erreur lors du transfert de la vidéo";
       });
+    }
+
+    downloadNewFile(){
+      this.loading = true;
+      this.getDownload(this.path_NewFile)
+      .then(response => {
+        this.loading = false;
+        console.log(response);
+      })
+      .catch(error => {
+        this.loading = false;
+        console.log(error);
+      })
+    }
+
+
+
+///// SERVICES
+    getDownload(path){
+      // Then you should pass the path to parameters (carefull with the / )
+      return new Promise((resolve, reject) => {
+        this.http.get(this.API_URL + '/video').subscribe(
+          (response: {path: string}) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    }
     
-  }
 
   transferVideo(options: string, videoData: any){
       let dataToSend = new FormData();
@@ -70,9 +104,8 @@ export class AppComponent {
       dataToSend.append('options', options);
       return new Promise((resolve, reject) => {
         this.http.post(this.API_URL + '/video/', dataToSend).subscribe(
-          (response) => {
-      
-            resolve(response);
+          (response: {path: string}) => {
+            resolve(response.path);
           },
           (error) => {
             reject(error);

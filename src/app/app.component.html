@@ -17,6 +17,9 @@
              class="btn btn-primary container" 
              [disabled]="uploadForm.controls.options.invalid"
              (click)="filePicker.click()">Choisir un fichier</button>
+         <button *ngIf="readyToDownload && !loading" type="button" 
+         class="btn btn-success container" 
+         (click)="downloadNewFile()">Télécharger le fichier</button>
           <input type="file" #filePicker (change)="onVideoPick($event)" formControlName="video">
           <div *ngIf="loading" class="loading-container">
             <div class="spinner-border text-primary" role="status">
@@ -26,7 +29,6 @@
       </div>
 
       <p *ngIf="errorMsg" class="text-danger">{{errorMsg}}</p>
-
     </form>
   </div>
 </div>
