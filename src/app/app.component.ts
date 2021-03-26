@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
 
     public API_URL = "http://localhost:3000/api/v1"
-	public uploadForm: FormGroup;
+	  public uploadForm: FormGroup;
     public videoData = undefined;
     public loading = false;
     public errorMsg = "";
