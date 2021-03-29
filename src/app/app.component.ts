@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-    // public API_URL = "http://localhost:3000/api/v1"
-    public API_URL = "http://ec2-15-188-231-247.eu-west-3.compute.amazonaws.com:3000/api/v1";
+    public API_URL = "http://localhost:3000/api/v1"
+    // public API_URL = "http://ec2-15-188-231-247.eu-west-3.compute.amazonaws.com:3000/api/v1";
 	  public uploadForm: FormGroup;
     public videoData = undefined;
     public loading = false;

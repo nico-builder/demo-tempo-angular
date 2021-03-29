@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group container">
-         <button *ngIf="!loading" type="button" 
+         <button *ngIf="!readyToDownload && !loading" type="button" 
              class="btn btn-primary container" 
              [disabled]="uploadForm.controls.options.invalid"
              (click)="filePicker.click()">Choisir un fichier</button>
