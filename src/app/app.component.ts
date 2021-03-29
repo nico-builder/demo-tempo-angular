@@ -58,11 +58,13 @@ export class AppComponent {
       // we store the board withtout saving any brand or model
       this.transferVideo(options, this.videoData)
       .then((path: string) => {
+        console.log(path);
         this.loading = false;
         this.path_NewFile = path;
         this.readyToDownload = true;
       })
       .catch((error) => {
+        console.log(error);
         this.loading = false;
         this.errorMsg = "Erreur lors du transfert de la vidéo";
       });
